@@ -271,77 +271,81 @@ body.light-mode .info-link:hover {
     margin-top: 2px;
 }
 
-/* Lưới Mạng Xã Hội */
-.social-connect-grid {
+/* Container chứa các icon mạng xã hội */
+.social-icons-container {
     display: flex;
-    flex-wrap: wrap;   
     justify-content: center;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding-top: 20px;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap; /* Giúp không bị tràn khung card khi thêm nhiều MXH sau này */
+    margin-top: 15px;
+    padding: 5px 0;
 }
 
-body.light-mode .social-connect-grid {
-    border-top-color: rgba(0, 0, 0, 0.06);
-}
-
-.connect-box {
-    flex: 1 1 30%;         /* Mỗi mục chiếm khoảng 30%, tự co giãn */
-    min-width: 90px;       /* Đảm bảo không bị quá nhỏ */
+/* Nút icon tròn */
+.social-icon-btn {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    background: #161b22;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    justify-content: center; /* Căn icon và chữ vào giữa hộp */
-    padding: 10px 5px;
-    gap: 4px;
-    padding: 10px;
-    background: var(--box-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
+    justify-content: center;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    color: #c9d1d9; /* Màu mặc định của icon */
 }
 
-.connect-box .icon-wrapper {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;    /* Không cho phép khung bị co lại */
+/* Tùy chỉnh kích thước SVG */
+.social-icon {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
-body.light-mode .connect-box .icon-wrapper {
-    background: rgba(0, 0, 0, 0.04);
+/* Hiệu ứng khi rê chuột (Hover): Phát sáng neon và đổi màu icon */
+.social-icon-btn:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 242, 254, 0.6);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.5), 0 0 30px rgba(0, 242, 254, 0.2);
+    background: #1f293d;
+    color: #00f2fe; /* Icon sáng rực theo màu neon */
 }
 
-.social-logo {
-    width: 20px;       /* Đặt kích thước cố định */
-    height: 20px;      /* Đặt kích thước cố định */
-    object-fit: contain; /* Đảm bảo logo không bị méo */
-    display: block;    /* Loại bỏ khoảng trắng thừa dưới ảnh */
+.social-icon-btn:hover .social-icon {
+    transform: scale(1.15);
 }
 
-.connect-box .connect-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-main);
-    font-family: 'Plus Jakarta Sans', sans-serif; /* Phông chữ */
-    letter-spacing: 0.2px;   /* Khoảng cách giữa các chữ cái */
+/* Tooltip hiện tên khi hover */
+.social-icon-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -36px;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    background: rgba(15, 23, 42, 0.95);
+    color: #ffffff;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    letter-spacing: 0.5px;
 }
 
-.connect-box.facebook:hover {
-    background: rgba(24, 119, 242, 0.12);
-    border-color: #1877f2;
-}
-
-.connect-box.zalo:hover {
-    background: rgba(0, 104, 255, 0.12);
-    border-color: #0068ff;
-}
-
-.connect-box:hover {
-    transform: translateY(-3px);
+.social-icon-btn:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* ==========================================================================
