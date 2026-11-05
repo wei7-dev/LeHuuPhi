@@ -1,142 +1,618 @@
 <!DOCTYPE html>
-<html lang="vi">
-
+<html lang="vi" data-theme="light">j
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Profile Card</title>
-    <!-- Nhúng phông chữ viết và font code chuyên dụng -->
-    <link href="https://googleapis.com" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <title>My Portfolio — Frontend Developer</title>
+    <meta name="description" id="meta-description" content="Portfolio của Lê Hữu Phi — frontend developer tại Quy Nhơn, Việt Nam. Sinh năm 2007, đang học tại Quy Nhon College of Technology. Xem dự án HRM System, Honda Showroom và Honda Admin.">
+    <meta name="author" content="Lê Hữu Phi">
+    <meta name="theme-color" content="#f4eee3" id="theme-color">
+    <link rel="canonical" href="https://wei7-dev.github.io/card-profile/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" id="og-locale" content="vi_VN">
+    <meta property="og:url" content="https://wei7-dev.github.io/card-profile/">
+    <meta property="og:site_name" content="Lê Hữu Phi — Frontend Developer">
+    <meta property="og:title" id="og-title" content="Lê Hữu Phi — Frontend Developer">
+    <meta property="og:description" id="og-description" content="Frontend developer tại Quy Nhơn. Mình biến ý tưởng thành dự án thật — xem các dự án và liên hệ với mình.">
+    <meta property="og:image" content="https://wei7-dev.github.io/card-profile/assets/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" id="og-image-alt" content="Trang chủ portfolio Lê Hữu Phi — Biến ý tưởng thành dự án thật">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitter-title" content="Lê Hữu Phi — Frontend Developer">
+    <meta name="twitter:description" id="twitter-description" content="Frontend developer tại Quy Nhơn. Xem các dự án HRM System, Honda Showroom và Honda Admin.">
+    <meta name="twitter:image" content="https://wei7-dev.github.io/card-profile/assets/og-cover.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" as="image" href="assets/avatar.jpg" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css?v=8">
+
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('portfolio-theme');
+                var theme = saved === 'dark' || saved === 'light' ? saved : 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+                var themeMeta = document.getElementById('theme-color');
+                if (themeMeta) {
+                    themeMeta.setAttribute('content', theme === 'dark' ? '#171310' : '#f4eee3');
+                }
+            } catch (error) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+            document.documentElement.classList.add('js');
+        }());
+    </script>
 </head>
 
-<body>
+<body id="top">
+    <a class="skip-link" href="#main" data-i18n="skip">Bỏ qua điều hướng</a>
 
-    <div class="card-container">
-        <!-- Đốm sáng trang trí phía sau card -->
-        <div class="glow-bg"></div>
+    <!-- ============================================================
+         ĐIỀU HƯỚNG NỔI
+    ============================================================= -->
+    <nav class="dock" id="dock" aria-label="Điều hướng chính" data-i18n-aria-label="nav.label">
+        <div class="dock-links" id="dock-links">
+            <span class="dock-indicator" id="dock-indicator" aria-hidden="true"></span>
 
-        <div class="profile-card">
-
-            <!-- NÚT LIGHT/DARK MODE -->
-            <button id="theme-toggle" class="theme-btn">
-                <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <path
-                        d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41">
-                    </path>
+            <a href="#gioi-thieu" data-nav="gioi-thieu" class="dock-link" aria-label="Giới thiệu" data-i18n-aria-label="nav.about">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="8" r="3.6"></circle>
+                    <path d="M4.5 20c.7-3.5 3.6-5.5 7.5-5.5s6.8 2 7.5 5.5"></path>
                 </svg>
-                <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                <span class="dock-label" data-i18n="nav.about">Giới thiệu</span>
+            </a>
+
+            <a href="#ky-nang" data-nav="ky-nang" class="dock-link" aria-label="Kỹ năng" data-i18n-aria-label="nav.skills">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"></path>
                 </svg>
-            </button>
+                <span class="dock-label" data-i18n="nav.skills">Kỹ năng</span>
+            </a>
 
-            <!-- GIAO DIỆN CHÍNH (THÔNG TIN PROFILE) -->
-            <div id="main-profile-content">
-                <div class="card-header">
-                    <div class="avatar-wrapper">
-                        <img src="ava.png" alt="User Avatar" class="avatar">
-                        <span class="status-badge"></span>
-                    </div>
-                    <h2>Lê Hữu Phi</h2>
-                    <p class="job-title">Website Developer</p>
-                </div>
-                <!-- THÔNG TIN LIÊN HỆ -->
-                <div class="card-body">
-                    <!-- Điện thoại -->
-                    <a href="tel:+84387614187" class="info-link">
-                        <div class="info-icon"><img src="dien-thoai.png" alt="Phone" class="social-logo"></div>
-                        <div class="info-text"><span class="label">Điện thoại</span>
-                            <span class="value">+84 387 614 187</span>
-                        </div>
-                    </a>
+            <a href="#du-an" data-nav="du-an" class="dock-link" aria-label="Dự án" data-i18n-aria-label="nav.projects">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3.5 7.5a2 2 0 0 1 2-2h3.2l1.8 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path>
+                </svg>
+                <span class="dock-label" data-i18n="nav.projects">Dự án</span>
+            </a>
 
-                    <!-- Email -->
-                    <a href="#" class="info-link">
-                        <div class="info-icon"><img src="mail.png" alt="Mail" class="social-logo"></div>
-                        <div class="info-text"><span class="label">Email liên hệ</span>
-                            <span class="value">lp5378411@gmail.com</span>
-                        </div>
-                    </a>
-<!-- target="_blank" -->
-                    <!-- Trường học -->
-                    <a href="https://cdktcnqn.edu.vn" target="_blank" class="info-link">
-                        <div class="info-icon"><img src="truong-cd.png" alt="School" class="social-logo"></div>
-                        <div class="info-text"><span class="label">School</span>
-                            <span class="value">Quy Nhon College of Technology</span>
-                        </div>
-                    </a>
+            <a href="#kinh-nghiem" data-nav="kinh-nghiem" class="dock-link" aria-label="Kinh nghiệm" data-i18n-aria-label="nav.experience">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="7.5" width="18" height="12" rx="2.5"></rect>
+                    <path d="M9 7.5V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v1.5M3 12.5h18"></path>
+                </svg>
+                <span class="dock-label" data-i18n="nav.experience">Kinh nghiệm</span>
+            </a>
 
-                    <!-- BẤM VÀO ĐÂY ĐỂ XEM SOURCE CODE TRỰC TIẾP TRÊN CARD -->
-                    <a href="#" id="view-source-trigger" class="info-link">
-                        <div class="info-icon"><img src="folder.jpg" alt="Coffee" class="social-logo"></div>
-                        <div class="info-text"><span class="label">Website Source</span>
-                            <span class="value">Xem dự án trực tiếp tại đây</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Liên kết mạng xã hội dạng icon tròn vector -->
-                <div class="social-icons-container">
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/wei.077" target="_blank" class="social-icon-btn"
-                        data-tooltip="Facebook">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                        </svg>
-                    </a>
-
-                    <!-- Zalo (Đã sửa lỗi hiển thị) -->
-                    <a href="https://zalo.me/0387614187" target="_blank" class="social-icon-btn" data-tooltip="Zalo">
-                        <!-- <svg class="social-icon" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M9.5 10h13c.83 0 1.5.67 1.5 1.5v1c0 .83-.67 1.5-1.5 1.5h-7.38l7.15 9.77c.45.62 0 1.23-.77 1.23h-13c-.83 0-1.5-.67-1.5-1.5v-1c0-.83.67-1.5 1.5-1.5h7.38l-7.15-9.77c-.45-.62 0-1.23.77-1.23z" />
-                        </svg> -->
-                        <svg class="social-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="currentColor"
-                                d="M12.49 10.2722v-.4496h1.3467v6.3218h-.7704a.576.576 0 01-.5763-.5729l-.0006.0005a3.273 3.273 0 01-1.9372.6321c-1.8138 0-3.2844-1.4697-3.2844-3.2823 0-1.8125 1.4706-3.2822 3.2844-3.2822a3.273 3.273 0 011.9372.6321l.0006.0005zM6.9188 7.7896v.205c0 .3823-.051.6944-.2995 1.0605l-.03.0343c-.0542.0615-.1815.206-.2421.2843L2.024 14.8h4.8948v.7682a.5764.5764 0 01-.5767.5761H0v-.3622c0-.4436.1102-.6414.2495-.8476L4.8582 9.23H.1922V7.7896h6.7266zm8.5513 8.3548a.4805.4805 0 01-.4803-.4798v-7.875h1.4416v8.3548H15.47zM20.6934 9.6C22.52 9.6 24 11.0807 24 12.9044c0 1.8252-1.4801 3.306-3.3066 3.306-1.8264 0-3.3066-1.4808-3.3066-3.306 0-1.8237 1.4802-3.3044 3.3066-3.3044zm-10.1412 5.253c1.0675 0 1.9324-.8645 1.9324-1.9312 0-1.065-.865-1.9295-1.9324-1.9295s-1.9324.8644-1.9324 1.9295c0 1.0667.865 1.9312 1.9324 1.9312zm10.1412-.0033c1.0737 0 1.945-.8707 1.945-1.9453 0-1.073-.8713-1.9436-1.945-1.9436-1.0753 0-1.945.8706-1.945 1.9436 0 1.0746.8697 1.9453 1.945 1.9453z" />
-                        </svg>
-                    </a>
-
-                    <!-- Github -->
-                    <a href="https://github.com/wei7-dev" target="_blank" class="social-icon-btn" data-tooltip="Github">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- GIAO DIỆN HIỂN THỊ DANH SÁCH DỰ ÁN CUỘN TRONG LÒNG CARD -->
-            <div id="code-viewer-content" style="display: none;">
-                <div class="viewer-header">
-                    <button id="back-to-profile" class="control-btn-back">Quay lại</button>
-                </div>
-
-                <!-- VÙNG KHUNG CHỨA DANH SÁCH NHIỀU DỰ ÁN (Có tích hợp thanh cuộn mượt) -->
-                <div class="code-box-wrapper projects-list-scroll-wrapper">
-                    <div id="projects-container-list" class="projects-vertical-stack">
-                        <!-- JavaScript sẽ tự động render hàng loạt thanh dự án xếp tầng vào đây -->
-                    </div>
-                </div>
-
-                <!-- THANH ĐIỀU HƯỚNG DÙNG ĐỂ CHUYỂN TRANG/DANH MỤC KHI SỐ LƯỢNG DỰ ÁN QUÁ LỚN -->
-                <div class="viewer-footer">
-                    <button id="prev-project" class="nav-btn">◀ Trước</button>
-                    <span id="project-counter">Trang 1 / 1</span>
-                    <button id="next-project" class="nav-btn">Sau ▶</button>
-                </div>
-            </div>
-
-
+            <a href="#lien-he" data-nav="lien-he" class="dock-link" aria-label="Liên hệ" data-i18n-aria-label="nav.contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2.5"></rect>
+                    <path d="m4 7 8 6 8-6"></path>
+                </svg>
+                <span class="dock-label" data-i18n="nav.contact">Liên hệ</span>
+            </a>
         </div>
-    </div>
 
-    <!-- Kết nối file JavaScript -->
-    <script src="index.js"></script>
+        <span class="dock-divider" aria-hidden="true"></span>
+
+        <div class="dock-lang" role="group" aria-label="Chọn ngôn ngữ" data-i18n-aria-label="nav.langLabel">
+            <button type="button" data-lang="vi" class="is-active" aria-pressed="true">VI</button>
+            <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+    </nav>
+
+    <main id="main">
+        <!-- ============================================================
+             MỞ ĐẦU
+        ============================================================= -->
+        <section class="hero">
+            <header class="topbar">
+                <div class="shell topbar-inner">
+                    <a class="brand" href="#top" aria-label="Dấu ấn cá nhân — về đầu trang" data-i18n-aria-label="topbar.brandAria">
+                        <span data-i18n="topbar.brand">Dấu ấn cá nhân</span><span class="brand-dot">.</span>
+                    </a>
+                    <div class="topbar-actions">
+                        <span class="topbar-note" data-i18n="topbar.note">Hồ sơ cá nhân · 2026</span>
+                        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Chuyển sang giao diện tối" title="Đổi giao diện">
+                            <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="4"></circle>
+                                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                            </svg>
+                            <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="shell hero-inner">
+                <div class="hero-copy">
+                    <p class="hero-hello">
+                        <span class="hello-line" aria-hidden="true"></span>
+                        <span data-i18n="hero.hello">Xin chào, mình là Phi.</span>
+                    </p>
+
+                    <h1 class="hero-quote" id="hero-title">
+                        <span data-i18n="hero.quote1">Biến ý tưởng</span>
+                        <span data-i18n="hero.quote2">thành <em>dự án thật.</em></span>
+                    </h1>
+
+                    <p class="hero-lede" data-i18n="hero.lede">
+                        Mình là <strong>frontend developer</strong> tại Quy Nhơn. Mình đang học,
+                        đang làm và đang tìm cơ hội đầu tiên để biến những gì học được
+                        thành sản phẩm có ích.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#du-an">
+                            <span data-i18n="hero.ctaProjects">Xem dự án</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 17 17 7M8 7h9v9"></path>
+                            </svg>
+                        </a>
+                        <a class="btn btn-ghost" href="#lien-he" data-i18n="hero.ctaContact">Kết nối với mình</a>
+                    </div>
+
+                    <ul class="hero-meta">
+                        <li data-i18n="hero.metaLocation">Quy Nhơn, Việt Nam</li>
+                        <li data-i18n="hero.metaBirth">Sinh năm 2007</li>
+                        <li data-i18n="hero.metaStudent">Sinh viên</li>
+                    </ul>
+                </div>
+
+                <div class="hero-portrait">
+                    <span class="portrait-note" data-i18n="hero.portraitNote" aria-hidden="true">Quy Nhơn · 2007</span>
+
+                    <div class="portrait-frame">
+                        <img src="assets/avatar.jpg" width="1100" height="600" alt="Minh hoạ Lê Hữu Phi đang làm việc bên máy tính" data-i18n-alt="hero.avatarAlt" fetchpriority="high">
+                        <span class="portrait-badge">
+                            <span class="status-dot" aria-hidden="true"></span>
+                            <span data-i18n="hero.status">Đang tìm cơ hội</span>
+                        </span>
+                    </div>
+
+                    <p class="portrait-caption">
+                        <strong>Lê Hữu Phi</strong>
+                        <span data-i18n="hero.role">Frontend developer · Quy Nhơn</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="shell hero-foot">
+                <a class="scroll-cue" href="#gioi-thieu">
+                    <span class="scroll-cue-line" aria-hidden="true"></span>
+                    <span data-i18n="hero.scroll">Cuộn xuống</span>
+                </a>
+                <span class="hero-version" data-i18n="hero.version">Portfolio v2 · 2026</span>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             GIỚI THIỆU
+        ============================================================= -->
+        <section class="section about" id="gioi-thieu" aria-labelledby="about-title">
+            <div class="shell">
+                <div class="section-head reveal">
+                    <div>
+                        <span class="section-eyebrow" data-i18n="about.eyebrow">Giới thiệu</span>
+                        <h2 class="section-title" id="about-title" data-i18n="about.title">Một chút về <em>mình.</em></h2>
+                    </div>
+                    <p class="section-desc" data-i18n="about.desc">
+                        Vài điều cơ bản để bạn biết mình là ai, đang học gì và đang tìm gì.
+                    </p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-copy reveal">
+                        <p data-i18n="about.p1">
+                            Mình là Lê Hữu Phi, sinh năm 2007, hiện sống ở Quy Nhơn. Mình đang học
+                            tại Quy Nhon College of Technology và dành phần lớn thời gian rảnh
+                            để tự học frontend.
+                        </p>
+                        <p data-i18n="about.p2">
+                            Mình thích biến những ý tưởng nhỏ thành trang web có thể dùng được —
+                            từ layout, tương tác đến lúc đưa lên mạng. Hiện tại mình đang tìm
+                            cơ hội thực tập hoặc vị trí junior để học thêm từ một team thật.
+                        </p>
+                        <p class="about-signature" data-i18n="about.signature">— Phi.</p>
+                    </div>
+
+                    <aside class="fact-card reveal" aria-labelledby="facts-title">
+                        <div class="fact-card-head">
+                            <h3 id="facts-title" data-i18n="about.factsTitle">Hồ sơ nhanh</h3>
+                            <span class="fact-card-label" data-i18n="about.factsLabel">Hiện tại</span>
+                        </div>
+
+                        <dl class="facts">
+                            <div class="fact-row">
+                                <dt data-i18n="about.locationLabel">Địa điểm</dt>
+                                <dd data-i18n="about.locationValue">Quy Nhơn, Bình Định, Việt Nam</dd>
+                            </div>
+                            <div class="fact-row">
+                                <dt data-i18n="about.birthLabel">Năm sinh</dt>
+                                <dd data-i18n="about.birthValue">2007</dd>
+                            </div>
+                            <div class="fact-row">
+                                <dt data-i18n="about.schoolLabel">Trường học</dt>
+                                <dd>
+                                    <a class="fact-school" href="https://cdktcnqn.edu.vn" target="_blank" rel="noopener" aria-label="Mở website trường trong tab mới" data-i18n-aria-label="about.schoolAria">
+                                        <img src="assets/school.png" width="64" height="64" alt="Logo Trường Cao đẳng Kỹ thuật Công nghệ Quy Nhơn" data-i18n-alt="about.schoolLogoAlt" loading="lazy">
+                                        <span data-i18n="about.schoolValue">Quy Nhon College of Technology</span>
+                                    </a>
+                                </dd>
+                            </div>
+                            <div class="fact-row">
+                                <dt data-i18n="about.statusLabel">Trạng thái</dt>
+                                <dd>
+                                    <span class="fact-status">
+                                        <span class="status-dot" aria-hidden="true"></span>
+                                        <span data-i18n="about.statusValue">Đang tìm cơ hội thực tập hoặc junior</span>
+                                    </span>
+                                </dd>
+                            </div>
+                        </dl>
+
+                        <p class="fact-foot">
+                            <span class="status-dot status-dot--tiny" aria-hidden="true"></span>
+                            <span data-i18n="about.current">Sinh viên · Tự học frontend</span>
+                        </p>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             KỸ NĂNG
+        ============================================================= -->
+        <section class="section skills" id="ky-nang" aria-labelledby="skills-title">
+            <div class="shell">
+                <div class="section-head reveal">
+                    <div>
+                        <span class="section-eyebrow" data-i18n="skills.eyebrow">Kỹ năng</span>
+                        <h2 class="section-title" id="skills-title" data-i18n="skills.title">Những gì mình dùng <em>mỗi ngày.</em></h2>
+                    </div>
+                    <p class="section-desc" data-i18n="skills.desc">
+                        Không phải danh sách để khoe. Đây là những công cụ mình thực sự mở ra
+                        và dùng khi làm dự án.
+                    </p>
+                </div>
+
+                <div class="skills-grid">
+                    <article class="skill-group reveal">
+                        <div class="skill-group-head">
+                            <h3 data-i18n="skills.frontendTitle">Frontend</h3>
+                            <span class="skill-group-hint" data-i18n="skills.frontendHint">Giao diện</span>
+                        </div>
+                        <p class="skill-group-desc" data-i18n="skills.frontendDesc">
+                            Dựng layout, responsive và tương tác trên trình duyệt.
+                        </p>
+                        <ul class="skill-tags" aria-label="Công nghệ frontend" data-i18n-aria-label="skills.frontendAria">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-group reveal">
+                        <div class="skill-group-head">
+                            <h3 data-i18n="skills.backendTitle">Backend</h3>
+                            <span class="skill-group-hint" data-i18n="skills.backendHint">Máy chủ</span>
+                        </div>
+                        <p class="skill-group-desc" data-i18n="skills.backendDesc">
+                            Xử lý logic và làm quen với các ngôn ngữ phía máy chủ.
+                        </p>
+                        <ul class="skill-tags" aria-label="Công nghệ backend" data-i18n-aria-label="skills.backendAria">
+                            <li>Java</li>
+                            <li>Python</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-group reveal">
+                        <div class="skill-group-head">
+                            <h3 data-i18n="skills.databaseTitle">Database</h3>
+                            <span class="skill-group-hint" data-i18n="skills.databaseHint">Dữ liệu</span>
+                        </div>
+                        <p class="skill-group-desc" data-i18n="skills.databaseDesc">
+                            Lưu trữ, truy vấn và đồng bộ dữ liệu cho dự án.
+                        </p>
+                        <ul class="skill-tags" aria-label="Cơ sở dữ liệu" data-i18n-aria-label="skills.databaseAria">
+                            <li>Firebase</li>
+                            <li>Supabase</li>
+                            <li>MongoDB</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-group reveal">
+                        <div class="skill-group-head">
+                            <h3 data-i18n="skills.toolsTitle">Công cụ khác</h3>
+                            <span class="skill-group-hint" data-i18n="skills.toolsHint">Quy trình</span>
+                        </div>
+                        <p class="skill-group-desc" data-i18n="skills.toolsDesc">
+                            Quản lý phiên bản, kết nối API và dựng giao diện.
+                        </p>
+                        <ul class="skill-tags" aria-label="Công cụ khác" data-i18n-aria-label="skills.toolsAria">
+                            <li>Git/GitHub</li>
+                            <li>REST API</li>
+                            <li>Figma</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <p class="skills-quote reveal" data-i18n="skills.note">
+                    Mình không đo kỹ năng bằng phần trăm — mình đo bằng những gì đã làm được.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             DỰ ÁN
+        ============================================================= -->
+        <section class="section work" id="du-an" aria-labelledby="work-title">
+            <div class="shell">
+                <div class="section-head reveal">
+                    <div>
+                        <span class="section-eyebrow" data-i18n="work.eyebrow">Dự án</span>
+                        <h2 class="section-title" id="work-title" data-i18n="work.title">Những thứ mình <em>đã làm.</em></h2>
+                    </div>
+                    <p class="section-desc" data-i18n="work.desc">
+                        Chọn lọc vài dự án mình tâm đắc. Tất cả đều có link để bạn xem trực tiếp.
+                    </p>
+                </div>
+
+                <p class="projects-label reveal" data-i18n="work.featuredLabel">Dự án nổi bật</p>
+
+                <div class="projects">
+                    <article class="project reveal">
+                        <div class="project-intro">
+                            <p class="project-meta" data-i18n="work.p1.meta">Web application · 2026</p>
+                            <h3>HRM System</h3>
+                        </div>
+                        <div class="project-info">
+                            <p class="project-desc" data-i18n="work.p1.desc">
+                                Hệ thống quản lý nhân sự, chấm công, lịch làm việc và báo cáo tài chính.
+                                Giao diện và luồng tương tác được viết bằng HTML, CSS, JavaScript;
+                                dữ liệu đăng nhập và thời gian thực chạy trên Firebase.
+                            </p>
+                            <div class="project-links">
+                                <a class="text-link" href="https://wei7-dev.github.io/hrm-system/" target="_blank" rel="noopener">
+                                    <span data-i18n="work.viewProject">Xem dự án</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+                                </a>
+                                <a class="text-link text-link--muted" href="https://github.com/wei7-dev/hrm-system" target="_blank" rel="noopener">
+                                    <span data-i18n="work.sourceCode">Mã nguồn</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project reveal">
+                        <div class="project-intro">
+                            <p class="project-meta" data-i18n="work.p2.meta">E-commerce · 2026</p>
+                            <h3>Honda Showroom</h3>
+                        </div>
+                        <div class="project-info">
+                            <p class="project-desc" data-i18n="work.p2.desc">
+                                Showroom xe máy đa trang với danh mục, tìm kiếm, bộ lọc sản phẩm và
+                                modal chi tiết xe. Dữ liệu sản phẩm được tách khỏi giao diện để dễ
+                                cập nhật; trải nghiệm tối ưu từ mobile đến desktop.
+                            </p>
+                            <div class="project-links">
+                                <a class="text-link" href="https://wei7-dev.github.io/honda-dashboard/honda-model/index.html" target="_blank" rel="noopener">
+                                    <span data-i18n="work.viewProject">Xem dự án</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+                                </a>
+                                <a class="text-link text-link--muted" href="https://github.com/wei7-dev/honda-dashboard" target="_blank" rel="noopener">
+                                    <span data-i18n="work.sourceCode">Mã nguồn</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="other-section reveal">
+                    <div class="other-head">
+                        <h3 data-i18n="work.otherLabel">Dự án khác</h3>
+                        <p data-i18n="work.otherDesc">Những thứ nhỏ hơn, làm sau giờ học.</p>
+                    </div>
+
+                    <div class="other-list">
+                        <a class="other-item" href="https://wei7-dev.github.io/honda-dashboard/admin-dashboard/index.html" target="_blank" rel="noopener" aria-label="Mở bản demo Honda Admin trong tab mới" data-i18n-aria-label="work.o1.aria">
+                            <span class="other-main">
+                                <strong>Honda Admin</strong>
+                                <span data-i18n="work.o1.desc">Dashboard quản trị kho, sản phẩm và hoá đơn. Demo: admin / admin123.</span>
+                            </span>
+                            <span class="other-tags">JavaScript · LocalStorage</span>
+                            <svg class="other-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+                        </a>
+
+                        <a class="other-item" href="v1/index.html" target="_blank" rel="noopener" aria-label="Mở bản Profile Card v1 trong tab mới" data-i18n-aria-label="work.o2.aria">
+                            <span class="other-main">
+                                <strong>Profile Card v1</strong>
+                                <span data-i18n="work.o2.desc">Phiên bản đầu tiên của trang CV này — lưu lại để so sánh.</span>
+                            </span>
+                            <span class="other-tags">HTML · CSS · JavaScript</span>
+                            <svg class="other-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+                        </a>
+                    </div>
+
+                    <p class="other-note" data-i18n="work.otherNote">Mình đang làm thêm vài thứ nhỏ. Danh sách này sẽ được cập nhật.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             KINH NGHIỆM
+        ============================================================= -->
+        <section class="section experience" id="kinh-nghiem" aria-labelledby="experience-title">
+            <div class="shell">
+                <div class="experience-grid">
+                    <div class="experience-copy reveal">
+                        <span class="section-eyebrow" data-i18n="exp.eyebrow">Kinh nghiệm</span>
+                        <h2 class="section-title" id="experience-title" data-i18n="exp.title">Phần này còn <em>để trống.</em></h2>
+                        <p data-i18n="exp.p">
+                            Mình vẫn đang học và chưa có kinh nghiệm làm việc thực tế. Mình không
+                            muốn điền vào đây những thứ chưa xảy ra, nên sẽ để dành phần này cho
+                            bản v3 — khi có cơ hội thực tập hoặc công việc đầu tiên.
+                        </p>
+                        <span class="experience-badge" data-i18n="exp.badge">Cập nhật ở v3</span>
+                        <div class="experience-cta">
+                            <a class="text-link" href="#du-an">
+                                <span data-i18n="exp.cta">Xem các dự án mình đã làm</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="experience-track reveal" aria-label="Lộ trình kinh nghiệm" data-i18n-aria-label="exp.trackAria">
+                        <div class="track-item">
+                            <span class="track-label" data-i18n="exp.nowLabel">Hiện tại</span>
+                            <p class="track-value" data-i18n="exp.nowValue">Sinh viên · Tự học và làm dự án</p>
+                            <p class="track-note" data-i18n="exp.nowNote">Mình đang học và tự làm dự án để tích lũy kinh nghiệm.</p>
+                        </div>
+                        <div class="track-item track-item--future">
+                            <span class="track-label">v3</span>
+                            <p class="track-value" data-i18n="exp.futureValue">Chờ trải nghiệm đầu tiên</p>
+                            <p class="track-note" data-i18n="exp.futureNote">Khi có cơ hội thực tập hoặc công việc đầu tiên, mình sẽ cập nhật phần này.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             LIÊN HỆ
+        ============================================================= -->
+        <section class="section contact" id="lien-he" aria-labelledby="contact-title">
+            <div class="shell">
+                <div class="contact-grid">
+                    <div class="contact-copy reveal">
+                        <span class="section-eyebrow" data-i18n="contact.eyebrow">Liên hệ</span>
+                        <h2 class="section-title contact-title" id="contact-title" data-i18n="contact.title">Cùng <em>nói chuyện</em> nhé.</h2>
+                        <p data-i18n="contact.p">
+                            Nếu bạn đang tìm một frontend developer cho vị trí thực tập, junior
+                            hoặc một dự án nhỏ, mình rất muốn nghe từ bạn.
+                        </p>
+                        <div class="contact-actions">
+                            <a class="btn btn-primary" href="mailto:lp5378411@gmail.com?subject=K%E1%BA%BFt%20n%E1%BB%91i%20v%E1%BB%9Bi%20L%C3%AA%20H%E1%BB%AFu%20Phi">
+                                <span data-i18n="contact.emailCta">Gửi email cho mình</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+                            </a>
+                        </div>
+                        <p class="contact-note">
+                            <span class="status-dot status-dot--small" aria-hidden="true"></span>
+                            <span data-i18n="contact.note">Mình thường phản hồi trong vòng 48 giờ.</span>
+                        </p>
+                    </div>
+
+                    <div class="contact-list reveal">
+                        <div class="contact-row contact-row--email">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value"><a href="mailto:lp5378411@gmail.com">lp5378411@gmail.com</a></span>
+                            <button class="copy-btn" id="copy-email" type="button" data-copy="lp5378411@gmail.com" aria-label="Sao chép địa chỉ email" data-i18n-aria-label="contact.copyAria">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+                                    <path d="M5 15V5a2 2 0 0 1 2-2h10"></path>
+                                </svg>
+                                <span data-i18n="contact.copy">Copy</span>
+                            </button>
+                        </div>
+
+                        <a class="contact-row" href="tel:+84387614187">
+                            <span class="contact-label" data-i18n="contact.phoneLabel">Điện thoại</span>
+                            <span class="contact-value">+84 387 614 187</span>
+                            <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+                        </a>
+
+                        <div class="contact-row contact-row--static">
+                            <span class="contact-label" data-i18n="contact.locationLabel">Địa chỉ</span>
+                            <span class="contact-value" data-i18n="contact.locationValue">Quy Nhơn, Bình Định, Việt Nam</span>
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 0 1 16 0Z"></path>
+                                <circle cx="12" cy="10" r="2.6"></circle>
+                            </svg>
+                        </div>
+
+                        <div class="contact-row contact-row--static">
+                            <span class="contact-label" data-i18n="contact.responseLabel">Phản hồi</span>
+                            <span class="contact-value" data-i18n="contact.responseValue">Trong vòng 48 giờ</span>
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="8.5"></circle>
+                                <path d="M12 7.5V12l3 2"></path>
+                            </svg>
+                        </div>
+
+                        <div class="contact-row contact-row--social">
+                            <span class="contact-label" data-i18n="contact.socialLabel">Mạng xã hội</span>
+                            <div class="social-links">
+                                <a class="social-link" href="https://github.com/wei7-dev" target="_blank" rel="noopener" aria-label="Mở GitHub trong tab mới" data-i18n-aria-label="contact.githubAria">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path>
+                                    </svg>
+                                </a>
+                                <a class="social-link" href="https://www.facebook.com/wei.077" target="_blank" rel="noopener" aria-label="Mở Facebook trong tab mới" data-i18n-aria-label="contact.facebookAria">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"></path>
+                                    </svg>
+                                </a>
+                                <a class="social-link" href="https://zalo.me/0387614187" target="_blank" rel="noopener" aria-label="Mở Zalo trong tab mới" data-i18n-aria-label="contact.zaloAria">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5Z"></path>
+                                        <path d="M9 9h6l-6 6h6"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================= -->
+    <footer class="site-footer">
+        <div class="shell">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a class="brand" href="#top" aria-label="Dấu ấn cá nhân — về đầu trang" data-i18n-aria-label="topbar.brandAria">
+                        <span data-i18n="topbar.brand">Dấu ấn cá nhân</span><span class="brand-dot">.</span>
+                    </a>
+                    <p data-i18n="footer.tagline">Frontend developer<br>tại Quy Nhơn, Việt Nam.</p>
+                </div>
+
+                <nav class="footer-nav" aria-label="Điều hướng footer" data-i18n-aria-label="footer.navLabel">
+                    <a href="#gioi-thieu" data-i18n="nav.about">Giới thiệu</a>
+                    <a href="#ky-nang" data-i18n="nav.skills">Kỹ năng</a>
+                    <a href="#du-an" data-i18n="nav.projects">Dự án</a>
+                    <a href="#kinh-nghiem" data-i18n="nav.experience">Kinh nghiệm</a>
+                    <a href="#lien-he" data-i18n="nav.contact">Liên hệ</a>
+                </nav>
+
+                <div class="footer-meta">
+                    <span data-i18n="footer.version">Phiên bản 2.0 / 2026</span>
+                    <a href="v1/index.html" target="_blank" rel="noopener" data-i18n="footer.v1">Xem bản v1 ↗</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© <span id="year">2026</span> Lê Hữu Phi</span>
+                <span data-i18n="footer.built">Thiết kế &amp; code bằng HTML, CSS, JavaScript.</span>
+                <span id="local-time">Quy Nhơn · --:--</span>
+                <a href="#top" data-i18n="footer.top">Lên đầu ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="index.js?v=8"></script>
 </body>
-
 </html>
