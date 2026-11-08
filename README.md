@@ -2,7 +2,7 @@
 
 Portfolio cá nhân của **Lê Hữu Phi**, frontend developer tại Quy Nhơn. Đây là bản thiết kế lại (v2) từ profile card cũ: mở đầu bằng ảnh chân dung và câu nói *“Biến ý tưởng thành dự án thật”*, điều hướng bằng thanh nổi dạng liquid glass ở cuối màn hình, và hỗ trợ chuyển đổi **Tiếng Việt / English** ngay trên trang.
 
-- **GitHub Pages:** https://wei7-dev.github.io/card-profile/
+- **GitHub Pages:** https://wei7-dev.github.io/LeHuuPhi/
 - **Bản v1 lưu trữ:** [`v1/index.html`](v1/index.html) — giữ nguyên để so sánh, không phải bản đang phát triển.
 
 ## Điểm chính
